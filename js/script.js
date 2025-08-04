@@ -5,7 +5,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
   const email = document.getElementById('email').value;
   const message = document.getElementById('message').value;
 
-  const response = await fetch('https://portfolio-hqvz.onrender.com', { // <-- Replace with your actual backend URL
+  const response = await fetch('https://portfolio-hqvz.onrender.com/contact', { // <-- Replace with your actual backend URL
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, email, message })
@@ -14,3 +14,4 @@ document.getElementById('contactForm').addEventListener('submit', async function
   const result = await response.json();
   document.getElementById('responseMsg').textContent = result.message;
 });
+
