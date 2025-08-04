@@ -1,10 +1,16 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const cors = require('cors');
 require('dotenv').config(); // <-- Load environment variables
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(cors({
+  origin: 'https://chloeparadiseangning-portfolio.vercel.app/'
+}));
+
 
 // Middleware
 app.use(express.json());
@@ -45,6 +51,12 @@ app.post('/contact', async (req, res) => {
     res.status(500).json({ message: 'Failed to send message.' });
   }
 });
+
+// Serve your contact.html as the root page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'contact.html'));
+});
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
