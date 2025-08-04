@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Me - My Portfolio</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js"></script>
+
 </head>
 <body>
   <header>
@@ -34,26 +36,9 @@
       <textarea id="message" name="message" rows="5" required></textarea>
 
       <button type="submit" class="btn">Send Message</button>
-      <p id="responseMsg"></p>
+      <p id="responseMsg" style="margin-top: 1em;"></p>
+
     </form>
   </section>
-
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const response = await fetch('/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: document.getElementById('name').value,
-          email: document.getElementById('email').value,
-          message: document.getElementById('message').value
-        })
-      });
-
-      const result = await response.json();
-      document.getElementById('responseMsg').textContent = result.message;
-    });
-  </script>
 </body>
 </html>
