@@ -2,24 +2,28 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const cors = require('cors');
-require('dotenv').config(); // <-- Load environment variables
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: 'https://chloeparadiseangning-portfolio.vercel.app/'
+  origin: 'https://chloeparadiseangning-portfolio.vercel.app' // ✅ No trailing slash
 }));
-
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// POST route to handle contact form
+// Serve contact.html at root
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'contact.html'));
+});
+
+// POST route
 app.post('/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -51,12 +55,6 @@ app.post('/contact', async (req, res) => {
     res.status(500).json({ message: 'Failed to send message.' });
   }
 });
-
-// Serve your contact.html as the root page
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'contact.html'));
-});
-
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
