@@ -8,8 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: 'https://chloeparadiseangning-portfolio.vercel.app' // ✅ No trailing slash
+  origin: 'https://chloeparadiseangning-portfolio.vercel.app',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
 }));
+
+app.options('/contact', cors()); // ✅ handle preflight OPTIONS request
 
 // Middleware
 app.use(express.json());
@@ -59,3 +63,4 @@ app.post('/contact', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
+
