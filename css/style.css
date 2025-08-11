@@ -11,7 +11,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background-color: ##B069DB;
+  background-color: #B069DB;
 }
 
 .logo {
@@ -259,5 +259,6 @@ blockquote {
   margin-top: 15px;
   font-weight: bold;
 }
+
 
 
