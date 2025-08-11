@@ -141,7 +141,7 @@ blockquote {
 
 /* Certificates page + dropdown */
 
-/* Dropdown */
+/* Navbar dropdown (class-based open state) */
 .dropdown { position: relative; }
 .dropdown-toggle {
   display: flex; align-items: center; gap: 6px;
@@ -149,14 +149,14 @@ blockquote {
   font: inherit; padding: 6px 8px; border-radius: 8px;
 }
 .dropdown-toggle:hover,
-.dropdown:focus-within .dropdown-toggle { background-color: #333; }
+.dropdown.open .dropdown-toggle { background-color: #333; }
+
 .dropdown-menu {
-  position: absolute; top: 110%; left: 0; min-width: 220px;
+  position: absolute; top: 110%; left: 0; min-width: 240px;
   background: #111; border: 1px solid #333; border-radius: 10px;
-  padding: 8px; display: none; z-index: 30;
+  padding: 8px; display: none; z-index: 30; white-space: nowrap;
 }
-.dropdown:hover .dropdown-menu,
-.dropdown:focus-within .dropdown-menu { display: block; }
+.dropdown.open .dropdown-menu { display: block; }
 .dropdown-menu a {
   display: block; padding: 8px 10px; border-radius: 8px; color: #fff; text-decoration: none;
 }
@@ -164,13 +164,9 @@ blockquote {
 
 /* Certificates sections */
 .certificates { padding: 40px; }
-.cert-section { padding: 20px 0; }
-.cert-wrap { max-width: 1100px; margin: 0 auto; }
-.cert-section h2 {
-  font-size: 24px; margin: 0 0 12px;
-  border-left: 4px solid #00bcd4; padding-left: 10px;
-}
-.cert-section .lead { margin: 4px 0 16px; color: #444; }
+.cert-intro { max-width: 1100px; margin: 0 auto 10px; }
+.cert-intro h1 { margin: 0 0 8px; }
+.cert-intro p { margin: 0; }
 
 /* Grid + cards */
 .cert-grid {
@@ -327,4 +323,5 @@ blockquote {
   margin-top: 15px;
   font-weight: bold;
 }
+
 
