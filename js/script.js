@@ -26,43 +26,42 @@ document.getElementById('contactForm').addEventListener('submit', async function
   const toggle = dropdown.querySelector('.dropdown-toggle');
   const menu = dropdown.querySelector('.dropdown-menu');
 
-  // Toggle on click
+  function closeMenu() {
+    dropdown.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function openMenu() {
+    dropdown.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+
   toggle.addEventListener('click', (e) => {
     e.preventDefault();
-    const open = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!open));
-    menu.style.display = open ? 'none' : 'block';
+    dropdown.classList.contains('open') ? closeMenu() : openMenu();
   });
 
-  // Close when clicking outside
   document.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target)) {
-      toggle.setAttribute('aria-expanded', 'false');
-      menu.style.display = 'none';
-    }
+    if (!dropdown.contains(e.target)) closeMenu();
   });
 
-  // Close on Escape, basic keyboard nav
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      toggle.setAttribute('aria-expanded', 'false');
-      menu.style.display = 'none';
-      toggle.focus();
-    }
+    if (e.key === 'Escape') closeMenu();
   });
 
-  // Smooth scroll for dropdown links
-  menu.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const id = link.getAttribute('href');
-      const target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      toggle.setAttribute('aria-expanded', 'false');
-      menu.style.display = 'none';
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Optionally update hash without jump
-      history.replaceState(null, '', id);
+  // Smooth scroll when already on certificates.html
+  if (location.pathname.endsWith('certificates.html')) {
+    menu.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const id = link.getAttribute('href');
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        closeMenu();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', id);
+      });
     });
-  });
+  }
 })();
+
