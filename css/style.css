@@ -162,6 +162,10 @@ blockquote {
 }
 .dropdown-menu a:hover { background: #1a1a1a; color: #00bcd4; }
 
+/* Show dropdown on hover as a fallback */
+.dropdown:hover .dropdown-menu { display: block; }
+
+
 /* Certificates sections */
 .certificates { padding: 40px; }
 .cert-intro { max-width: 1100px; margin: 0 auto 10px; }
@@ -323,5 +327,6 @@ blockquote {
   margin-top: 15px;
   font-weight: bold;
 }
+
 
 
