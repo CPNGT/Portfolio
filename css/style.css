@@ -183,8 +183,21 @@ blockquote {
   border-radius: 12px; overflow: hidden;
   display: grid; grid-template-columns: 180px 1fr;
 }
-.thumb { background: #eaeaea; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; }
-.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.thumb {
+  background: #eaeaea;
+  width: 100%;
+  height: 180px; /* fixed height for all images */
+  overflow: hidden;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fills box without distortion */
+  display: block;
+}
+
 .body { padding: 14px 16px; }
 .body h3 { margin: 0 0 6px; font-size: 18px; color: #222; }
 .body p { margin: 0 0 10px; color: #444; }
@@ -327,6 +340,7 @@ blockquote {
   margin-top: 15px;
   font-weight: bold;
 }
+
 
 
 
